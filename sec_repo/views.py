@@ -2,6 +2,7 @@ from flask import render_template, flash, request, redirect, url_for
 
 from sec_repo import app, db
 from models import Entry
+from forms import AddEntry
 
 from logging import INFO
 app.logger.setLevel(INFO)
