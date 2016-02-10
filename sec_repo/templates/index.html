@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Security Findings/Methodologies Database
+{% endblock %}
+
+{%block content %}
+
+    <article>
+        <header>
+            <h1>Welcome</h1>
+            <p>This is a </p>
+        </header>
+        <section>
+            <h2>Security FIndings Templates</h2>
+            <p>Lorem ipsum </p>
+        </section>
+        <section>
+            <h2>Security Methodologies</h2>
+            <p>Lorem ipsum </p>
+        </section>
+        <footer>
+            <h3>Recent Entries:</h3>
+            {% if entries %}
+                 <ul>
+                {% for entry in entries %}
+                    <li>{{entry.title}}</li>
+                {% endfor %}
+                </ul>
+            {% else %}
+                 No entries
+            {% endif %}
+        </footer>
+    </article>
+
+{% endblock %}
+
