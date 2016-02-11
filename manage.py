@@ -4,12 +4,13 @@ from flask.ext.script import Manager, prompt_bool
 
 manager = Manager(app)
 
+
 @manager.command
 def dropdb():
-    if promt_bool(
-        "Are you sure you want to lose all your data"):
+    if promt_bool("Are you sure you want to lose all your data"):
         db.drop_all()
-        print "Dropped the database"
+        print 'Dropped the database'
+
 
 @manager.command
 def initdb():
