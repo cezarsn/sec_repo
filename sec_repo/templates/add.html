@@ -5,6 +5,9 @@
     Security Database - Add Entry
 {% endblock %}
 {% block content%}
+    {% for message in get_flashed_messages() %}
+        <div class="flash">{{ message }}</div>
+    {% endfor %}
     <section>
         <h1> Add new entry</h1>
            <form action="{{url_for('add')}}" method="post">

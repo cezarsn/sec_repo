@@ -43,6 +43,7 @@ def add():
         en = Entry(title=title, description=description, tags=tags)
         db.session.add(en)
         db.session.commit()
+        flash("The entry was saved to the database")
         app.logger.debug('stored entry: ' + title + "\n" + description + "\n" + tags)
 
     return render_template('add.html', form=form)
