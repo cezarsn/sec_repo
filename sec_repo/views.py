@@ -35,16 +35,17 @@ def index():
 
 @app.route('/add', methods=["GET", "POST"])
 def add():
-    if request.method == "POST":
-        title = request.form['title']
-        description = request.form['description']
-        tags = request.form['tags']
+    form = AddEntry()
+    if form.validate_on_submit():
+        title = form.title.data
+        description = form.description.data
+        tags = form.tags.data
         en = Entry(title=title, description=description, tags=tags)
         db.session.add(en)
         db.session.commit()
         app.logger.debug('stored entry: ' + title + "\n" + description + "\n" + tags)
 
-    return render_template('add.html')
+    return render_template('add.html', form=form)
 
 
 @app.route('/search', methods=["GET", "POST"])

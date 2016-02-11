@@ -1,8 +1,10 @@
-from flask_wtf import Form, TextField, TextAreaField, SubmitField
+from flask_wtf import Form
+from wtforms import TextField, TextAreaField, SubmitField
+from wtforms.validators import Required
 
 
 class AddEntry(Form):
-    title = TextField("Title")
-    description = TextAreaField("Description")
-    tags = TextField("Tags")
+    title = TextField("Title", [Required()])
+    description = TextAreaField("Description", [Required()])
+    tags = TextField("Tags", [Required()])
     submit = SubmitField("Save")

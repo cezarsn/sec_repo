@@ -7,18 +7,18 @@
 {% block content%}
     <section>
         <h1> Add new entry</h1>
-           <form action="" method="post">
-               <p>
-                   <h1>Title:</h1>
-                   <input type="text" name="title" size="60">
-                    <h3>Description:</h3>
-                   <textarea name="description" cols="60" rows="15"></textarea>
-                    <h3>Tags:</h3>
-                   <p><input type="text" name="tags" size="60">
-               </p>
-               <p>
-                   <button type="submit">Submit</button>
-               </p>
+           <form action="{{url_for('add')}}" method="post">
+               {{form.hidden_tag()}}
+                    {{form.title.label}}
+                    {{form.title}}
+
+                    {{form.description.label}}
+                    {{form.description}}
+
+                    {{form.tags.label}}
+                    {{form.tags}}
+
+                    {{form.submit}}
            </form>
     </section>
 
