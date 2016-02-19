@@ -2,7 +2,7 @@ from flask import render_template, flash, request, redirect, url_for
 
 from sec_repo import app, db
 from models import Entry
-from forms import AddEntry
+from forms import ModEntry
 
 from logging import INFO
 app.logger.setLevel(INFO)
@@ -35,7 +35,7 @@ def index():
 
 @app.route('/add', methods=["GET", "POST"])
 def add():
-    form = AddEntry()
+    form = ModEntry()
     if form.validate_on_submit():
         title = form.title.data
         description = form.description.data
@@ -46,7 +46,16 @@ def add():
         flash("The entry was saved to the database")
         app.logger.debug('stored entry: ' + title + "\n" + description + "\n" + tags)
 
-    return render_template('add.html', form=form)
+    return render_template('entry_form.html', form=form, title="Add")
+
+
+@app.route('/edit/<int:id>', methods=["GET", "POST"])
+def edit(id):
+    entry = Entry.query.get_or_404(id)
+    form = ModEntry(obj=entry)
+    if form.validate_on_submit():
+        form.populate_obj(entry)
+    return render_template('entry_form.html', form=form, title="Edit")
 
 
 @app.route('/search', methods=["GET", "POST"])
@@ -67,7 +76,7 @@ def page_not_found(e):
     return render_template('404.html'), 404
 
 
-# @app.errorhandler(500)
-# def server_error(e):
-#     return render_template('500.html'), 500
+@app.errorhandler(500)
+def server_error(e):
+     return render_template('500.html'), 500
 

@@ -3,7 +3,7 @@ from wtforms import TextField, TextAreaField, SubmitField
 from wtforms.validators import Required
 
 
-class AddEntry(Form):
+class ModEntry(Form):
     title = TextField("Title", [Required()])
     description = TextAreaField("Description", [Required()])
     tags = TextField("Tags", [Required()])
