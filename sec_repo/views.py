@@ -55,6 +55,8 @@ def edit(id):
     form = ModEntry(obj=entry)
     if form.validate_on_submit():
         form.populate_obj(entry)
+        db.session.commit()
+        flash("Stored '{}'".format(entry.title))
     return render_template('entry_form.html', form=form, title="Edit")
 
 
